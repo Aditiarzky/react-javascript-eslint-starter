@@ -26,5 +26,16 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["tailwind.config.js", "postcss.config.js", "vite.config.js"],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

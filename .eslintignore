@@ -3,4 +3,5 @@
 *.css
 /node_modules
 /build
-vite.config.ts
+vite.config.js
+tailwind.config.js
