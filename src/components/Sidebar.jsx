@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import React, { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import {
   Home,
   Calendar,
@@ -11,49 +11,49 @@ import {
   ChevronUp,
   BookOpen,
   CreditCard,
-  User
-} from "lucide-react";
-import { Link } from "@inertiajs/react";
-import logoApp from "@/images/logoParentKanal.webp";
-import { useIsMobile } from "@/hooks/use-mobile";
+  User,
+} from 'lucide-react';
+import { Link } from '@inertiajs/react';
+import logoApp from '@/images/logoParentKanal.webp';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const navigation = [
-  { 
-    name: "Dashboard", 
-    href: "/dashboard", 
+  {
+    name: 'Dashboard',
+    href: '/dashboard',
     icon: Home,
-    hasSubmenu: false
+    hasSubmenu: false,
   },
-  { 
-    name: "Akademik", 
+  {
+    name: 'Akademik',
     icon: BookOpen,
     hasSubmenu: true,
     submenu: [
-      { name: "Hasil Studi", href: "/akademik/hasil-studi" },
-      { name: "Presensi", href: "/akademik/presensi" },
-      { name: "Transkrip", href: "/akademik/transkrip" }
-    ]
+      { name: 'Hasil Studi', href: '/akademik/hasil-studi' },
+      { name: 'Presensi', href: '/akademik/presensi' },
+      { name: 'Transkrip', href: '/akademik/transkrip' },
+    ],
   },
-  { 
-    name: "Jadwal", 
+  {
+    name: 'Jadwal',
     icon: Calendar,
     hasSubmenu: true,
     submenu: [
-      { name: "Jadwal Kuliah", href: "/jadwal/jadwal-kuliah" },
-      { name: "Jadwal Dosen Wali", href: "/jadwal/jadwal-dosen-wali" }
-    ]
+      { name: 'Jadwal Kuliah', href: '/jadwal/jadwal-kuliah' },
+      { name: 'Jadwal Dosen Wali', href: '/jadwal/jadwal-dosen-wali' },
+    ],
   },
-  { 
-    name: "Pembayaran", 
-    href: "/payment", 
+  {
+    name: 'Pembayaran',
+    href: '/payment',
     icon: CreditCard,
-    hasSubmenu: false
+    hasSubmenu: false,
   },
-  { 
-    name: "Profile Mahasiswa", 
-    href: "/profile", 
+  {
+    name: 'Profile Mahasiswa',
+    href: '/profile',
     icon: User,
-    hasSubmenu: false
+    hasSubmenu: false,
   },
 ];
 
@@ -103,9 +103,9 @@ export function Sidebar({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsColla
   };
 
   const toggleSubmenu = (menuName) => {
-    setOpenSubmenus(prev => ({
+    setOpenSubmenus((prev) => ({
       ...prev,
-      [menuName]: !prev[menuName]
+      [menuName]: !prev[menuName],
     }));
   };
 
@@ -113,30 +113,24 @@ export function Sidebar({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsColla
     <>
       {/* Mobile overlay */}
       {isMobile && isMobileOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-primary/20 backdrop-blur-sm bg-opacity-50 z-40 md:hidden"
           onClick={() => setIsMobileOpen(false)}
         />
       )}
-      
+
       <div
         className={cn(
-          "bg-sidebar border-r border-sidebar-border transition-all duration-300 fixed inset-y-0 left-0 z-50 h-screen",
-          isMobile ? (isMobileOpen ? "translate-x-0" : "-translate-x-full") : "translate-x-0",
-          isCollapsed ? "w-16" : "w-64"
+          'bg-sidebar border-r border-sidebar-border transition-all duration-300 fixed inset-y-0 left-0 z-50 h-screen',
+          isMobile ? (isMobileOpen ? 'translate-x-0' : '-translate-x-full') : 'translate-x-0',
+          isCollapsed ? 'w-16' : 'w-64',
         )}
-        style={{ overflowY: 'auto' }} 
+        style={{ overflowY: 'auto' }}
       >
         <div className="flex h-full flex-col">
           {/* Header Sidebar */}
           <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
-            {!isCollapsed && (
-              <img
-                src={logoApp}
-                alt="Logo"
-                className="h-8 w-auto dark:invert dark:brightness-0"
-              />
-            )}
+            {!isCollapsed && <img src={logoApp} alt="Logo" className="h-8 w-auto dark:invert dark:brightness-0" />}
             <Button
               variant="ghost"
               size="sm"
@@ -167,22 +161,17 @@ export function Sidebar({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsColla
                         <button
                           onClick={() => toggleSubmenu(item.name)}
                           className={cn(
-                            "flex items-center justify-between w-full rounded-lg px-3 py-2 text-sm transition-colors",
-                            "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                            isCollapsed && "justify-center"
+                            'flex items-center justify-between w-full rounded-lg px-3 py-2 text-sm transition-colors',
+                            'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                            isCollapsed && 'justify-center',
                           )}
                         >
                           <div className="flex items-center gap-3">
                             <item.icon className="h-4 w-4 flex-shrink-0" />
                             {!isCollapsed && <span>{item.name}</span>}
                           </div>
-                          {!isCollapsed && (
-                            isSubmenuOpen ? (
-                              <ChevronUp className="h-4 w-4" />
-                            ) : (
-                              <ChevronDown className="h-4 w-4" />
-                            )
-                          )}
+                          {!isCollapsed &&
+                            (isSubmenuOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />)}
                         </button>
                         {!isCollapsed && isSubmenuOpen && (
                           <ul className="ml-6 mt-1 space-y-1">
@@ -194,10 +183,10 @@ export function Sidebar({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsColla
                                     href={subItem.href}
                                     onClick={handleLinkClick}
                                     className={cn(
-                                      "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                                      'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
                                       isSubActive
-                                        ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                                        ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+                                        : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
                                     )}
                                   >
                                     <span>{subItem.name}</span>
@@ -213,11 +202,11 @@ export function Sidebar({ isMobileOpen, setIsMobileOpen, isCollapsed, setIsColla
                         href={item.href}
                         onClick={handleLinkClick}
                         className={cn(
-                          "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                          'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
                           isActive
-                            ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                            : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                          isCollapsed && "justify-center"
+                            ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+                            : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                          isCollapsed && 'justify-center',
                         )}
                       >
                         <item.icon className="h-4 w-4 flex-shrink-0" />

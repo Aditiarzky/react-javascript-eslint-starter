@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": [
     "eslint:recommended",
@@ -12,7 +13,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": "latest",
+    "ecmaVersion": 12,
     "sourceType": "module"
   },
   "plugins": [
@@ -20,7 +21,10 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/no-unknown-property": ["error", { 
+      "ignore": ["cmdk-input-wrapper", "cmdk-dialog", "cmdk-input", "cmdk-list", "cmdk-item"] 
+    }]
   },
   "settings": {
     "react": {
@@ -32,6 +36,9 @@
       "files": ["tailwind.config.js", "postcss.config.js", "vite.config.js"],
       "env": {
         "node": true
+      },
+      "parserOptions": {
+        "sourceType": "script"
       },
       "rules": {
         "no-undef": "off"
