@@ -6,7 +6,7 @@ import ErrorBoundary from './ErrorBoundary';
 import GlobalErrorHandler from './GlobalErrorHandler';
 
 function App() {
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
